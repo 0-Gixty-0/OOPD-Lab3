@@ -1,0 +1,8 @@
+Possible changes:
+* In our CarController we implement a timer class, however we could have this in a seperate file and thereby using the 
+* In our DrawPanel we have a moveit method that moves our vehicle, we may want to move this. 
+
+Analyzing the UML diagram
+*   Between our cars (Scania, Volvo, and all cars). We have low cohesion and high coupling. Our different packages are highly dependent
+    on eachother. Meaning that the CarController, which is another package, is highly dependent on the package that contains our cars.
+    
