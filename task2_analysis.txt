@@ -1,0 +1,16 @@
+Dependencies (with respect to cohesion and coupling, and the Dependency Inversion Principle.)
+    Which Dependencies are necessary?
+
+    Which classes are dependent that should not be?
+
+    Are there stronger dependencies than necessary?
+
+    Can you identify any violations of other design principles we talked about in the course?
+
+Classes (with respect to Separation of Concern (SoC) and Single Responsibility Principle (SRP).)
+    What responsibilities do your classes have?
+
+    What reasons do they have for change?
+
+    In which classes would you need to apply decomposition to better follow SoC and SRP?
+
