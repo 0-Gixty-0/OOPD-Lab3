@@ -1,4 +1,4 @@
-package lab2;
+package lab;
 
 import java.awt.*;
 
@@ -13,6 +13,7 @@ public class Vehicle implements Movable{
     private int xChange;
     private int yChange;
     private boolean isStationary;
+    private String modelName;
     //. private String modelName;
 
     public enum Direction {
@@ -22,17 +23,18 @@ public class Vehicle implements Movable{
         RIGHT
     }
 
-    public Vehicle(int nrDoors, double enginePower, Color color){
+    public Vehicle(int nrDoors, double enginePower, Color color, String modelname){
         this.nrDoors = nrDoors;
         this.color = color;
         this.enginePower = enginePower;
         this.currentSpeed = 0;
         this.xCord = 0;
         this.yCord = 0;
-        this.direction = Direction.UP;
-        this.xChange = 0;
-        this.yChange = -1;
+        this.direction = Direction.RIGHT;
+        this.xChange = 1;
+        this.yChange = 0;
         this.isStationary = true;
+        this.modelName = modelname;
     }
 
     public int getNrDoors(){
@@ -180,5 +182,9 @@ public class Vehicle implements Movable{
                 this.direction = Direction.DOWN;
                 break;
         }
+    }
+
+    public String getModelName() {
+        return this.modelName;
     }
 }

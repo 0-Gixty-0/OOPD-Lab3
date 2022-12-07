@@ -1,16 +1,15 @@
-package lab2;
+package lab;
 
 import java.awt.*;
 
 public class Saab95 extends Car{
 
     private boolean turboOn;
-    private String modelName; // The car model name
     
     public Saab95(){
-        super(2, 125.0, Color.red);
-        this.modelName = "Saab95";
+        super(2, 125.0, Color.red, "Saab95");
         this.turboOn = false;
+        this.positionVehicle(0, 100);
     }
 
     public void setTurboOn(){

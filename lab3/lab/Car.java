@@ -1,12 +1,12 @@
-package lab2;
+package lab;
 
 import java.awt.*;
 
 public class Car extends Vehicle{
     private boolean isLoaded = false;
 
-    public Car(int nrDoors, double enginePower, Color color){
-        super(nrDoors, enginePower, color);
+    public Car(int nrDoors, double enginePower, Color color, String modelName){
+        super(nrDoors, enginePower, color, modelName);
     }
 
     public boolean getIsLoaded(){

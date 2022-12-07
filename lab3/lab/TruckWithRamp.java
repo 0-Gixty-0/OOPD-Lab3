@@ -1,4 +1,4 @@
-package lab2;
+package lab;
 
 import java.awt.Color;
 
@@ -7,8 +7,8 @@ public class TruckWithRamp extends Truck implements HasRamp{
     private double rampAngle;
     private double rampAngleChange;
 
-	public TruckWithRamp(int nrDoors, double enginePower, Color color) {
-		super(nrDoors, enginePower, color);
+	public TruckWithRamp(int nrDoors, double enginePower, Color color, String modelname) {
+		super(nrDoors, enginePower, color, modelname);
         this.rampRaised = false;
         this.rampAngle = 0;
         this.rampAngleChange = 2.0;

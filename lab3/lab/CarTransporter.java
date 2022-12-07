@@ -1,4 +1,4 @@
-package lab2;
+package lab;
 import java.awt.*;
 import java.util.ArrayList;
 
