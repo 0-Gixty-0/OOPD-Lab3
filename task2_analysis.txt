@@ -1,16 +1,40 @@
 Dependencies (with respect to cohesion and coupling, and the Dependency Inversion Principle.)
     Which Dependencies are necessary?
+        Depencies to CarManagement class
+        CarManagement depends on Car
+        CarView depends on DrawPanel
 
     Which classes are dependent that should not be?
+        carController is dependent on Volvo, saab, and scania
+        CarController is dependent on CarView
+        DrawPanel is dependent on Car
 
     Are there stronger dependencies than necessary?
+        CarView being dependent on DrawPanel is too strong
+        The dependencies that should not exist are also too strong
 
     Can you identify any violations of other design principles we talked about in the course?
+        S - Is violated due to CarController and CarView and DrawPanel doing more than one thing
+        O - CarController break this principle since adding new cars requires us to rewrite the code
+            Depencies between M V and C classes breaks this principle since changing or adding a new V or C is impossible
+        L - No issues
+        I - No issues
+        D - Is violated in many dependencies such as DrawPanel is dependent on Car (we want to be able to draw other objects than car), 
+            carController is dependent on Volvo, saab, and scania
 
 Classes (with respect to Separation of Concern (SoC) and Single Responsibility Principle (SRP).)
     What responsibilities do your classes have?
+        struken
 
     What reasons do they have for change?
-
+        We can add more cars
+        If we want to add a new CarView
+        If we want to add a new CarController
+        If we want to add more trucks
+        If we want to update the model (which does not exist)
+        
     In which classes would you need to apply decomposition to better follow SoC and SRP?
+        CarController
+        DrawPanel
+        CarView
 
