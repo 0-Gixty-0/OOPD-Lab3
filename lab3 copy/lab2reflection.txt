@@ -1,0 +1,57 @@
+1. 
+    • gas() - contract 
+
+Vehicle:
+
+Updates the current speed of the instance object based on amount.
+
+The input (amount) must be a double from 0 to 1.
+
+Calls method "incrementSpeed" with amount as argument which increases the currentSpeed
+
+Updates instance variable isStationary to false
+
+
+Volvo:
+Same as for Vehicle
+
+Scania:
+Same as for Vehicle, but checks if ramp islowered before running gas()
+
+
+    • brake() - contract
+
+Updates the current speed of the instance object based on amount.
+
+The input (amount) must be a double from 0 to 1.
+
+Calls method "decrementSpeed" with amount as argument which decreases the currentSpeed.
+
+Updates instance variable to True if currentSpeed is 0.
+ 
+
+    • The implementation of brake() is not overwritten and therefore fulfills the contract.
+
+    • The implementation of gas() however is overwritten in Scania. Nonetheless, the contract is still fulfilled,
+      since the implementation does the same thing, but only when we want it to based on an if-statement.
+
+    • The Liskov substitution principle is followed since we can replace object of Vehicle with objects of Scania and Volvo without breaking the application.
+      This is possible because the method are inherited and not overwritten, exception for Scania's gas method, which still fulfills the contract.
+
+2. 
+    • Check UML-diagram.png for overview of the structure.
+
+    • The only delegation we used was from CarTransporter and CarRepairShop to the CarManagement class.
+      We did this because the methods in CarManagement are used in both CarTransporter and CarRepairShop.
+      We didn't use an interface because the implementation is always the same and we didn't use subclassing
+      because CarManagement and CarRepairShop exist outside Vehicle hierarchy.
+
+    • We used subclassing for the vehicle hierarchy because all the other relevant classes have the same functionality.
+
+3.
+
+    • No code was rewritten, only rearanged into a new hierarchy. Essentially we moved the majority of the code in Car to a new superclass Vehicle.
+     
+    • Check Lab_1_overview.png for overview of the lab 1 structure.
+
+    • Since we were able to extend our code without modifying it, we have followed the open-closed principle!
