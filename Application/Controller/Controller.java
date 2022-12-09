@@ -6,8 +6,8 @@ import java.util.ArrayList;
 public class Controller {
     private ArrayList<ControllerObserver> controllerObservers;
 
-    public void addObserver() {
-        controllerObservers.add(ControllerObserver obj)
+    public void addObserver(ControllerObserver observer) {
+        controllerObservers.add(observer);
     }
 
     private void notifyObserver() {

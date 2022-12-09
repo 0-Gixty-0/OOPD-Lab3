@@ -3,7 +3,7 @@ package Application.Model.Factories;
 import lab.CarTransporter;
 import lab.Scania;
 
-public class TruckFactory {
+public class TruckFactory{
     
     public Scania createScania(){
         Scania scania = new Scania();

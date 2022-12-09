@@ -8,12 +8,13 @@ import Application.Observer.Events;
 import Application.Observer.IObserver;
 import lab.Saab95;
 import lab.Vehicle;
+import Application.Model.Factories.*;
 
-public class Model implements ControllerObserver {
+public class Model implements ControllerObserver{
     private Set<IObserver> observersSet;
     private Set<Vehicle> vehiclesSet;
-    private IFactory carFactory = new CarFactory();
-    private IFactory truckFactory = new TruckFactory();
+    private CarFactory carFactory = new CarFactory();
+    private TruckFactory truckFactory = new TruckFactory();
 
     public Model() {
         this.carFactory = new CarFactory();
@@ -42,7 +43,7 @@ public class Model implements ControllerObserver {
 
     private void initalizeVehicleSet() {
         this.addVehicle(carFactory.createSaab95());
-        this.addVehicle(carFactory.volvo240());
+        this.addVehicle(carFactory.createVolvo240());
         this.addVehicle(truckFactory.createScania());
     }
 
