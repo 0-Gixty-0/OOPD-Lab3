@@ -1,16 +1,162 @@
 package Application.Controller;
 
-import Application.Observer.ControllerObserver;
-import java.util.ArrayList;
+import Application.Observer.Events;
+import Application.Observer.IObserver;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Controller {
-    private ArrayList<ControllerObserver> controllerObservers;
+    private Set<IObserver> controllerObservers;
 
-    public void addObserver(ControllerObserver observer) {
+    JPanel gasPanel = new JPanel();
+
+    JPanel controlPanel = new JPanel();
+
+    // JLabel gasLabel = new JLabel("Amount of gas");
+
+    // Our button logic
+    private JButton gasButton = new JButton("Gas");
+    private JButton brakeButton = new JButton("Brake");
+    private JButton turboOnButton = new JButton("Saab Turbo on");
+    private JButton turboOffButton = new JButton("Saab Turbo off");
+    private JButton liftBedButton = new JButton("Scania Lift Bed");
+    private JButton lowerBedButton = new JButton("Lower Lift Bed");
+
+    private JButton startButton = new JButton("Start all cars");
+    private JButton stopButton = new JButton("Stop all cars");
+    private JSpinner gasSpinner = new JSpinner();
+
+    private int gasAmount;
+
+    SpinnerModel spinnerModel = new SpinnerNumberModel(0, 0, 100, 1);
+
+    public int getSpeedChange() {
+        return this.gasAmount;
+    } 
+
+    public Controller() {
+        this.gasSpinner = new JSpinner(this.spinnerModel);
+        this.controllerObservers = new HashSet<IObserver>();
+        gasSpinner.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent e) {
+                gasAmount = (int)((JSpinner)e.getSource()).getValue();
+            }
+        });
+        this.setupEventListeners();
+    }
+   
+    private void setupEventListeners() {
+         // This actionListener is for the gas button only
+        // TODO: Create more for each component as necessary
+        gasButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                notifyObservers(Events.Event.GASEVENT);
+            }
+        });
+
+        brakeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                notifyObservers(Events.Event.BRAKEEVENT);
+            }
+        });
+
+        startButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                notifyObservers(Events.Event.STARTCARSEVENT);
+            }
+        });
+
+        stopButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                notifyObservers(Events.Event.TURNOFFCARSEVENT);
+            }
+        });
+
+        turboOnButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                notifyObservers(Events.Event.TURBOONEVENT);
+            }
+        });
+
+        turboOffButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                notifyObservers(Events.Event.TURBOOFFEVENT);
+            }
+        });
+
+        liftBedButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                notifyObservers(Events.Event.LIFTBEDEVENT);
+            }
+        });
+
+        lowerBedButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                notifyObservers(Events.Event.LOWERBEDEVENT);
+            }
+        });
+        
+    }
+
+    public void addObserver(IObserver observer) {
         controllerObservers.add(observer);
     }
 
-    private void notifyObserver() {
-        
+    private void notifyObservers(Events.Event event) {
+        for (IObserver obs : controllerObservers){
+            obs.handleEvent(event);
+        }
+    }
+
+    public JPanel createControlPanel(int X) {
+        controlPanel = new JPanel();
+        controlPanel.setLayout(new GridLayout(2,4));
+
+        controlPanel.add(gasButton, 0);
+        controlPanel.add(turboOnButton, 1);
+        controlPanel.add(liftBedButton, 2);
+        controlPanel.add(brakeButton, 3);
+        controlPanel.add(turboOffButton, 4);
+        controlPanel.add(lowerBedButton, 5);
+        controlPanel.setPreferredSize(new Dimension((X/2)+4, 200));
+
+        return controlPanel;
+    }
+
+	public JPanel createGasPanel(JLabel gasLabel) {
+        gasPanel.setLayout(new BorderLayout());
+        gasPanel.add(gasLabel, BorderLayout.PAGE_START);
+        gasPanel.add(gasSpinner, BorderLayout.PAGE_END);
+		return controlPanel;
+	}
+
+	public JButton setupStartButton(int X) {
+        startButton.setBackground(Color.blue);
+        startButton.setForeground(Color.green);
+        startButton.setPreferredSize(new Dimension(X/5-15,200));
+		return startButton;
+	}
+
+    public JButton setupStopButton(int x) {
+        stopButton.setBackground(Color.red);
+        stopButton.setForeground(Color.black);
+        stopButton.setPreferredSize(new Dimension(x/5-15,200));
+        return stopButton;
     }
 }

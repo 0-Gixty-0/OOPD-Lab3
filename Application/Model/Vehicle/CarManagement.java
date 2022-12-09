@@ -1,5 +1,6 @@
-package lab;
+package Application.Model.Vehicle;
 import java.util.ArrayList;
+
 import java.lang.Math;
 
 public class CarManagement {

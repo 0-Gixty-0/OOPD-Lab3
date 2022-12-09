@@ -2,6 +2,8 @@ package lab;
 
 import java.awt.*;
 
+import Application.Model.Vehicle.Movable;
+
 public class Vehicle implements Movable{
     protected int nrDoors;
     protected double enginePower;

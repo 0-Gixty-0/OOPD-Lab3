@@ -1,11 +1,10 @@
-import java.awt.*;
+package Application.View;
+
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
-
-import Application.Model.Vehicle.Vehicle;
+import java.awt.*;
 
 // This panel represent the animated part of the view with the car images.
 
@@ -15,28 +14,10 @@ public class DrawPanel extends JPanel{
     BufferedImage volvoImage;
     BufferedImage saabImage;
     BufferedImage scaniaImage;
-    // To keep track of a singel cars position
+    // To keep track of a single cars position
     Point volvoPoint = new Point();
     Point saabPoint = new Point();
     Point scaniaPoint = new Point();
-
-    // TODO: Make this genereal for all cars
-    void moveit(int x, int y, Vehicle car){
-        switch (car.getModelName()) {
-            case "Volvo240":
-                volvoPoint.x = x;
-                volvoPoint.y = y;
-                break;
-            case "Scania":
-                scaniaPoint.x = x;
-                scaniaPoint.y = y;
-                break;
-            case "Saab95":
-                saabPoint.x = x;
-                saabPoint.y = y;
-                break;
-        }
-    }
 
     // Initializes the panel and reads the images
     public DrawPanel(int x, int y) {

@@ -1,7 +1,6 @@
 package Application.Model.Factories;
 
-import lab.CarTransporter;
-import lab.Scania;
+import Application.Model.Vehicle.*;
 
 public class TruckFactory{
     

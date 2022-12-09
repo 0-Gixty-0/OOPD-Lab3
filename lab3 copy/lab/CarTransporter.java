@@ -2,6 +2,10 @@ package lab;
 import java.awt.*;
 import java.util.ArrayList;
 
+import Application.Model.Vehicle.Car;
+import Application.Model.Vehicle.CarManagement;
+import Application.Model.Vehicle.TruckWithRamp;
+
 public class CarTransporter extends TruckWithRamp{
     private int maxCarCapacity;
     private CarManagement managementObj;

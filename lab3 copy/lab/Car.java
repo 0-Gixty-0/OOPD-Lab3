@@ -2,6 +2,8 @@ package lab;
 
 import java.awt.*;
 
+import Application.Model.Vehicle.Vehicle;
+
 public class Car extends Vehicle{
     private boolean isLoaded = false;
 

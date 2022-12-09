@@ -2,6 +2,9 @@ package lab;
 
 import java.util.ArrayList;
 
+import Application.Model.Vehicle.Car;
+import Application.Model.Vehicle.CarManagement;
+
 public class CarRepairShop {
     private CarManagement managementObj;
     private double xCord;

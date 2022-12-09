@@ -2,6 +2,8 @@ package lab;
 
 import java.awt.*;
 
+import Application.Model.Vehicle.Car;
+
 public class Saab95 extends Car{
 
     private boolean turboOn;

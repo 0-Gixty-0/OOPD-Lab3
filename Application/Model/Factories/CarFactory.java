@@ -1,7 +1,7 @@
 package Application.Model.Factories;
 
-import lab.Saab95;
-import lab.Volvo240;
+import Application.Model.Vehicle.Saab95;
+import Application.Model.Vehicle.Volvo240;
 
 public class CarFactory{
     

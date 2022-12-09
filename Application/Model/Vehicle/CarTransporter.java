@@ -1,4 +1,4 @@
-package lab;
+package Application.Model.Vehicle;
 import java.awt.*;
 import java.util.ArrayList;
 

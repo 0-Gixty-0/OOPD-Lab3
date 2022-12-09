@@ -1,16 +1,17 @@
 package Application.Observer;
 
 public class Events {
-    public enum ControllerEvents {
-        
-    }
 
-    public enum ModelEvents {
+    public enum Event {
         GASEVENT,
         BRAKEEVENT,
         TURBOONEVENT,
         TURBOOFFEVENT,
         STARTCARSEVENT,
         TURNOFFCARSEVENT,
+        UPDATESCREEN,
+        SETSPEEDCHANGE,
+        LIFTBEDEVENT,
+        LOWERBEDEVENT
     }
 }

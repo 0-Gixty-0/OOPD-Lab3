@@ -1,6 +1,8 @@
-package lab;
+package Application.Model.Vehicle;
 
 import java.awt.*;
+
+import lab.Car;
 
 public class Saab95 extends Car{
 

@@ -1,9 +1,9 @@
-package lab;
+package Application.Model.Vehicle;
 
 import java.awt.Color;
 
-import Application.Model.Vehicle.HasRamp;
-import Application.Model.Vehicle.Truck;
+import lab.HasRamp;
+import lab.Truck;
 
 public class TruckWithRamp extends Truck implements HasRamp{
     private boolean rampRaised;

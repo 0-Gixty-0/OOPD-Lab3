@@ -1,9 +1,9 @@
 import javax.swing.*;
 
-import lab.Saab95;
-import lab.Scania;
-import lab.Vehicle;
-import lab.Volvo240;
+import Application.Model.Vehicle.Saab95;
+import Application.Model.Vehicle.Scania;
+import Application.Model.Vehicle.Vehicle;
+import Application.Model.Vehicle.Volvo240;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

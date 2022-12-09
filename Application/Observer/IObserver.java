@@ -1,5 +1,5 @@
 package Application.Observer;
 
 public interface IObserver {
-    void handleEvent(Events e); 
+    void handleEvent(Events.Event e); 
 }

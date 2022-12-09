@@ -4,20 +4,17 @@ import Application.Controller.Controller;
 import Application.View.View;
 import Application.Model.Model;
 
-
 public class App {{
-
-    //final Controller controller;
-    //final View view;
-    //final Model model;
 
 }
 
-
 public static void main(String[] args) {
-    View view = new View();
-    Model model = new Model();
-
+    
+    Controller controller = new Controller();
+    View view = new View(controller);
+    Model model = new Model(controller);
+    controller.addObserver(model);
+    model.addObserver(view);
     model.run();
     }
-}   
+}  
