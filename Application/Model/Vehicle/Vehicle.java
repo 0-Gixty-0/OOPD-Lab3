@@ -101,7 +101,6 @@ public class Vehicle implements Movable{
         this.yCord = y;
     }
 
-
     public double getXCord() {
         return xCord;
     }
