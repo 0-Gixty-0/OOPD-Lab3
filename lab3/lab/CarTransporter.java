@@ -7,14 +7,14 @@ public class CarTransporter extends TruckWithRamp{
     private CarManagement managementObj;
     
     public CarTransporter(int nrDoors, double enginePower, Color color, int maxCarCapacity) {
-        super(nrDoors, enginePower, color);
+        super(nrDoors, enginePower, color, "CarTransporter");
         this.maxCarCapacity = maxCarCapacity;
         this.managementObj = new CarManagement(maxCarCapacity);
         this.raiseRamp();
     }
 
     public CarTransporter() {
-        super(2, 125, Color.GRAY);
+        super(2, 125, Color.GRAY, "CarTransporter");
         this.maxCarCapacity = 4;
         this.managementObj = new CarManagement(this.maxCarCapacity);
         this.raiseRamp();
