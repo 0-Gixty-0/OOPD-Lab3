@@ -4,10 +4,11 @@ import Application.Controller.Controller;
 import Application.View.View;
 import Application.Model.Model;
 
+// App
+
 public class App {{
 
 }
-
 public static void main(String[] args) {
     
     Controller controller = new Controller();
