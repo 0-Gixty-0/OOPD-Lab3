@@ -32,11 +32,11 @@ public class Controller {
 
     private JButton startButton = new JButton("Start all cars");
     private JButton stopButton = new JButton("Stop all cars");
-    private JSpinner gasSpinner = new JSpinner();
 
     private int gasAmount;
 
-    SpinnerModel spinnerModel = new SpinnerNumberModel(0, 0, 100, 1);
+    private SpinnerModel spinnerModel = new SpinnerNumberModel(0, 0, 100, 1);
+    private JSpinner gasSpinner;
 
     public int getSpeedChange() {
         return this.gasAmount;
@@ -45,11 +45,6 @@ public class Controller {
     public Controller() {
         this.gasSpinner = new JSpinner(this.spinnerModel);
         this.controllerObservers = new HashSet<IObserver>();
-        gasSpinner.addChangeListener(new ChangeListener() {
-            public void stateChanged(ChangeEvent e) {
-                gasAmount = (int)((JSpinner)e.getSource()).getValue();
-            }
-        });
         this.setupEventListeners();
     }
    
@@ -59,6 +54,8 @@ public class Controller {
         gasButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                System.out.println(" ");    
+                System.out.println("Notified gas");
                 notifyObservers(Events.Event.GASEVENT);
             }
         });
@@ -140,10 +137,17 @@ public class Controller {
     }
 
 	public JPanel createGasPanel(JLabel gasLabel) {
+        gasPanel = new JPanel();
         gasPanel.setLayout(new BorderLayout());
+        gasSpinner = new JSpinner(spinnerModel);
+        gasSpinner.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent e) {
+                gasAmount = (int)((JSpinner)e.getSource()).getValue();
+            }
+        });
         gasPanel.add(gasLabel, BorderLayout.PAGE_START);
         gasPanel.add(gasSpinner, BorderLayout.PAGE_END);
-		return controlPanel;
+		return gasPanel;
 	}
 
 	public JButton setupStartButton(int X) {

@@ -1,7 +1,7 @@
 package Application.Model.Vehicle;
 
 public class Types {
-    enum VehicleType {
+    public enum VehicleType {
         VOLVO,
         SAAB,
         SCANIA,

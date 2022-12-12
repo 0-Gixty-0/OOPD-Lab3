@@ -77,7 +77,7 @@ public class Vehicle implements Movable{
 
     protected void incrementSpeed(double amount) {
         if (amount <= 1 && amount >= 0) {
-            currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount, enginePower);
+            currentSpeed = Math.max(getCurrentSpeed() + speedFactor() * amount, enginePower);
         }
     }
 
@@ -133,6 +133,8 @@ public class Vehicle implements Movable{
     @Override
     public void move() {
         this.xCord += this.xChange * currentSpeed;
+        System.out.println(currentSpeed);
+        System.out.println(this.xCord);
         this.yCord += this.yChange * currentSpeed;
     }
 

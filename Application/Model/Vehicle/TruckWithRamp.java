@@ -2,12 +2,9 @@ package Application.Model.Vehicle;
 
 import java.awt.Color;
 
-<<<<<<< HEAD
 import Application.Model.Vehicle.Types.VehicleType;
 
 
-=======
->>>>>>> e3763a74f399ef6da2bf7dd77c70da273d06d770
 public class TruckWithRamp extends Truck implements HasRamp{
     private boolean rampRaised;
     private double rampAngle;

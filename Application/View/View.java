@@ -2,6 +2,8 @@ package Application.View;
 import java.awt.Dimension;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import Application.Controller.Controller;
 import Application.Model.Model;
@@ -20,13 +22,14 @@ public class View extends JFrame implements ModelObserver, IObserver{
     private DrawPanel drawPanel;
 
     private Controller controller;
-    JLabel gasLabel = new JLabel("Amount of gas");
+    private JLabel gasLabel = new JLabel("Amount of gas");
+    private int gasAmount;
 
     public View(Controller controller, Model model) {
-        this.controller = controller;
-        this.initComponents("Car Application");
         this.model = model;
-        this.drawPanel = new DrawPanel(X, Y-240, model);
+        this.controller = controller;
+        this.drawPanel = new DrawPanel(X, Y-240, this.model);
+        this.initComponents("Car Application");
     }
 
     @Override
@@ -42,6 +45,9 @@ public class View extends JFrame implements ModelObserver, IObserver{
     
     @Override
     public void update(){
+        this.setVisible(true);
+        // drawPanel.paintComponent(getGraphics());
+        // System.out.println("painted components");
         this.repaint();
     }
 
@@ -50,9 +56,9 @@ public class View extends JFrame implements ModelObserver, IObserver{
         this.setPreferredSize(new Dimension(X,Y));
         this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 
-        this.add(drawPanel);
+        this.add(this.drawPanel);
 
-        gasPanel = controller.createGasPanel(gasLabel);
+        this.gasPanel = controller.createGasPanel(gasLabel);
 
         this.add(gasPanel);
 

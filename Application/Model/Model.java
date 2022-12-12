@@ -2,6 +2,7 @@ package Application.Model;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Timer;
 
 import Application.Observer.ControllerObserver;
 import Application.Observer.Events;
@@ -11,14 +12,25 @@ import Application.Model.Factories.*;
 import Application.Model.Vehicle.Saab95;
 import Application.Model.Vehicle.Vehicle;
 import Application.Controller.Controller;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Model implements ControllerObserver{
+    private class TimerListener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            for (Vehicle v : vehiclesSet) {
+                v.move(); 
+            }
+        }
+    }
     private Set<IObserver> observersSet;
     private Set<Vehicle> vehiclesSet;
     private CarFactory carFactory = new CarFactory();
     private TruckFactory truckFactory = new TruckFactory();
     private int speedChange;
     private Controller controller;
+    private final int delay = 50;
+    private Timer timer = new Timer(delay, new TimerListener());
 
     public Model(Controller controller) {
         this.carFactory = new CarFactory();
@@ -27,6 +39,7 @@ public class Model implements ControllerObserver{
         this.vehiclesSet = new HashSet<Vehicle>();
         this.speedChange = 0;
         this.controller = controller;
+        this.initalizeModel();
     }
 
     public void addObserver(IObserver o) {
@@ -40,8 +53,9 @@ public class Model implements ControllerObserver{
     }
 
     public void run() {
-        this.initalizeModel();
-        this.notifyObservers(Events.Event.UPDATESCREEN);
+        while (true) {
+            this.notifyObservers(Events.Event.UPDATESCREEN);
+        }
     }  
 
     private void initalizeModel() {
@@ -65,6 +79,7 @@ public class Model implements ControllerObserver{
                 speedChange = controller.getSpeedChange();
                 break;
             case GASEVENT:
+                System.out.println("recieved notification");
                 this.gas(speedChange);
                 break;
             case BRAKEEVENT:

@@ -31,6 +31,7 @@ public class DrawPanel extends JPanel{
         this.setPreferredSize(new Dimension(x, y));
         this.setBackground(Color.green);
         this.imageHashMap = new HashMap<VehicleType, BufferedImage>();
+        this.model = model;
         // Print an error message in case file is not found with a try/catch block
         try {
             // You can remove the "pics" part if running outside of IntelliJ and
@@ -56,8 +57,11 @@ public class DrawPanel extends JPanel{
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        for (Vehicle v: model.getVehiclesSet()) {
+        for (Vehicle v: this.model.getVehiclesSet()) {
             VehicleType type = v.getType();
+            System.out.println(" ");
+            System.out.println(v.getXCord());
+            System.out.println(v.getYCord());
             switch (type) {
                 case SAAB:
                     g.drawImage(saabImage, (int) v.getXCord(), (int) v.getYCord(), null); // see javadoc for more info on the parameters
@@ -73,6 +77,7 @@ public class DrawPanel extends JPanel{
     
             }
         }
+        System.out.println("Painted?");
 
     }
 }
