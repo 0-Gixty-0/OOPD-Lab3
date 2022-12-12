@@ -159,4 +159,8 @@ public class Model implements ControllerObserver{
         }
         this.notifyObservers(Events.Event.UPDATESCREEN);
     }
+
+    public Set<Vehicle> getVehiclesSet() {
+        return this.vehiclesSet;
+    }
 }

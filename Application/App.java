@@ -10,10 +10,9 @@ public class App {{
 
 }
 public static void main(String[] args) {
-    
     Controller controller = new Controller();
-    View view = new View(controller);
     Model model = new Model(controller);
+    View view = new View(controller, model);
     controller.addObserver(model);
     model.addObserver(view);
     model.run();

@@ -2,6 +2,9 @@ package Application.Model.Vehicle;
 
 import java.awt.*;
 
+import Application.Model.Vehicle.Types;
+import Application.Model.Vehicle.Types.VehicleType;
+
 public class Vehicle implements Movable{
     protected int nrDoors;
     protected double enginePower;
@@ -14,6 +17,7 @@ public class Vehicle implements Movable{
     private int yChange;
     private boolean isStationary;
     private String modelName;
+    private VehicleType type;
     //. private String modelName;
 
     public enum Direction {
@@ -23,7 +27,7 @@ public class Vehicle implements Movable{
         RIGHT
     }
 
-    public Vehicle(int nrDoors, double enginePower, Color color, String modelname){
+    public Vehicle(int nrDoors, double enginePower, Color color, String modelname, VehicleType type){
         this.nrDoors = nrDoors;
         this.color = color;
         this.enginePower = enginePower;
@@ -35,6 +39,7 @@ public class Vehicle implements Movable{
         this.yChange = 0;
         this.isStationary = true;
         this.modelName = modelname;
+        this.type = type;
     }
 
     public int getNrDoors(){
@@ -185,5 +190,9 @@ public class Vehicle implements Movable{
 
     public String getModelName() {
         return this.modelName;
+    }
+
+    public VehicleType getType() {
+        return this.type;
     }
 }

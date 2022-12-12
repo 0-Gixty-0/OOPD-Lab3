@@ -2,14 +2,14 @@ package Application.Model.Vehicle;
 
 import java.awt.*;
 
-import lab.Car;
+import Application.Model.Vehicle.Types.VehicleType;
 
 public class Saab95 extends Car{
 
     private boolean turboOn;
     
     public Saab95(){
-        super(2, 125.0, Color.red, "Saab95");
+        super(2, 125.0, Color.red, "Saab95", VehicleType.SAAB);
         this.turboOn = false;
         this.positionVehicle(0, 100);
     }

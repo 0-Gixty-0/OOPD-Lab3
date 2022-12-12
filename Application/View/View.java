@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import javax.swing.*;
 
 import Application.Controller.Controller;
+import Application.Model.Model;
 import Application.Observer.Events;
 import Application.Observer.IObserver;
 import java.awt.*;
@@ -12,17 +13,20 @@ public class View extends JFrame implements ModelObserver, IObserver{
 
     private JPanel controlPanel;
     private JPanel gasPanel;
+    private Model model;
 
     private static final int X = 800;
     private static final int Y = 800;
-    private DrawPanel drawPanel = new DrawPanel(X, Y-240);
+    private DrawPanel drawPanel;
 
     private Controller controller;
     JLabel gasLabel = new JLabel("Amount of gas");
 
-    public View(Controller controller) {
+    public View(Controller controller, Model model) {
         this.controller = controller;
         this.initComponents("Car Application");
+        this.model = model;
+        this.drawPanel = new DrawPanel(X, Y-240, model);
     }
 
     @Override
