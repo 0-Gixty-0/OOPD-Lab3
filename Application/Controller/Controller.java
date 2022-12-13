@@ -50,7 +50,6 @@ public class Controller {
    
     private void setupEventListeners() {
          // This actionListener is for the gas button only
-        // TODO: Create more for each component as necessary
         gasButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

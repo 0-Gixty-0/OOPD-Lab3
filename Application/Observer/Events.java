@@ -10,7 +10,6 @@ public class Events {
         STARTCARSEVENT,
         TURNOFFCARSEVENT,
         UPDATESCREEN,
-        SETSPEEDCHANGE,
         LIFTBEDEVENT,
         LOWERBEDEVENT
     }

@@ -1,5 +1,4 @@
-package Application.View;
-import Application.Observer.Events;
+package Application.Observer;
 
 public interface ModelObserver{
     public void handleEvent(Events.Event e);

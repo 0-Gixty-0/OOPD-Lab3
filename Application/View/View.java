@@ -9,6 +9,8 @@ import Application.Controller.Controller;
 import Application.Model.Model;
 import Application.Observer.Events;
 import Application.Observer.IObserver;
+import Application.Observer.ModelObserver;
+
 import java.awt.*;
 
 public class View extends JFrame implements ModelObserver, IObserver{
@@ -45,8 +47,6 @@ public class View extends JFrame implements ModelObserver, IObserver{
     @Override
     public void update(){
         this.setVisible(true);
-        // drawPanel.paintComponent(getGraphics());
-        // System.out.println("painted components");
         this.repaint();
     }
 

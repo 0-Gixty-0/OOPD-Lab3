@@ -57,9 +57,13 @@ public class Model implements ControllerObserver{
     }  
 
     private void initalizeModel() {
+        this.initializeTimer();
+        this.initalizeVehicleSet();
+    }
+
+    private void initializeTimer() {
         Timer timer = new Timer(delay, new TimerListener());
         timer.start();
-        this.initalizeVehicleSet();
     }
 
     private void initalizeVehicleSet() {
@@ -75,9 +79,6 @@ public class Model implements ControllerObserver{
     @Override
     public void handleEvent(Events.Event e) {
         switch (e) {
-            case SETSPEEDCHANGE:
-                speedChange = controller.getSpeedChange();
-                break;
             case GASEVENT:
                 speedChange = controller.getSpeedChange();
                 this.gas(speedChange);
