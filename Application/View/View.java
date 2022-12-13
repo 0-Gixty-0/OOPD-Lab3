@@ -23,7 +23,6 @@ public class View extends JFrame implements ModelObserver, IObserver{
 
     private Controller controller;
     private JLabel gasLabel = new JLabel("Amount of gas");
-    private int gasAmount;
 
     public View(Controller controller, Model model) {
         this.model = model;

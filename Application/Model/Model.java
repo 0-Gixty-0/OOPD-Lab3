@@ -2,7 +2,7 @@ package Application.Model;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.Timer;
+import javax.swing.Timer;
 
 import Application.Observer.ControllerObserver;
 import Application.Observer.Events;
@@ -16,26 +16,26 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Model implements ControllerObserver{
-    private class TimerListener implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            for (Vehicle v : vehiclesSet) {
-                v.move(); 
-            }
-        }
-    }
-    private Set<IObserver> observersSet;
+    private static Set<IObserver> observersSet = new HashSet<IObserver>();
     private Set<Vehicle> vehiclesSet;
     private CarFactory carFactory = new CarFactory();
     private TruckFactory truckFactory = new TruckFactory();
     private int speedChange;
     private Controller controller;
     private final int delay = 50;
-    private Timer timer = new Timer(delay, new TimerListener());
+
+    private class TimerListener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            for (Vehicle car : vehiclesSet) {
+                car.move();
+                Model.notifyObservers(Events.Event.UPDATESCREEN);
+            }
+        }
+    }
 
     public Model(Controller controller) {
         this.carFactory = new CarFactory();
         this.truckFactory = new TruckFactory();
-        this.observersSet = new HashSet<IObserver>();
         this.vehiclesSet = new HashSet<Vehicle>();
         this.speedChange = 0;
         this.controller = controller;
@@ -46,19 +46,19 @@ public class Model implements ControllerObserver{
         observersSet.add(o);
     }
 
-    private void notifyObservers(Events.Event event) {
+    static private void notifyObservers(Events.Event event) {
         for (IObserver obs : observersSet) {
             obs.handleEvent(event);
         }
     }
 
     public void run() {
-        while (true) {
-            this.notifyObservers(Events.Event.UPDATESCREEN);
-        }
+        Model.notifyObservers(Events.Event.UPDATESCREEN);
     }  
 
     private void initalizeModel() {
+        Timer timer = new Timer(delay, new TimerListener());
+        timer.start();
         this.initalizeVehicleSet();
     }
 
@@ -79,10 +79,11 @@ public class Model implements ControllerObserver{
                 speedChange = controller.getSpeedChange();
                 break;
             case GASEVENT:
-                System.out.println("recieved notification");
+                speedChange = controller.getSpeedChange();
                 this.gas(speedChange);
                 break;
             case BRAKEEVENT:
+                speedChange = controller.getSpeedChange();
                 this.brake(speedChange);
                 break;
             case STARTCARSEVENT:
@@ -128,17 +129,19 @@ public class Model implements ControllerObserver{
 	@Override
     public void gas(double amount) {
         for (Vehicle vehicle : vehiclesSet) {
-            vehicle.gas(amount);
+            double gas = ((double) amount) / 100;
+            vehicle.gas(gas);
         }
-        this.notifyObservers(Events.Event.UPDATESCREEN);
+        Model.notifyObservers(Events.Event.UPDATESCREEN);
     }
 
     @Override
     public void brake(double amount) {
         for (Vehicle vehicle : vehiclesSet) {
-            vehicle.brake(amount);
+            double brake = ((double) amount) / 100;
+            vehicle.brake(brake);
         }
-        this.notifyObservers(Events.Event.UPDATESCREEN);
+        Model.notifyObservers(Events.Event.UPDATESCREEN);
     }
 
     @Override
@@ -147,7 +150,7 @@ public class Model implements ControllerObserver{
             if (vehicle instanceof Saab95)
                 ((Saab95) vehicle).setTurboOn();
         }
-        this.notifyObservers(Events.Event.UPDATESCREEN);   
+        Model.notifyObservers(Events.Event.UPDATESCREEN);   
     }
 
     @Override
@@ -156,7 +159,7 @@ public class Model implements ControllerObserver{
             if (vehicle instanceof Saab95)
                 ((Saab95) vehicle).setTurboOff();
         }
-        this.notifyObservers(Events.Event.UPDATESCREEN);
+        Model.notifyObservers(Events.Event.UPDATESCREEN);
     }
 
     @Override
@@ -164,7 +167,7 @@ public class Model implements ControllerObserver{
         for (Vehicle vehicle : vehiclesSet) {
             vehicle.startEngine();
         }
-        this.notifyObservers(Events.Event.UPDATESCREEN);
+        Model.notifyObservers(Events.Event.UPDATESCREEN);
     }
 
     @Override
@@ -172,7 +175,7 @@ public class Model implements ControllerObserver{
         for (Vehicle vehicle : vehiclesSet) {
             vehicle.stopEngine();
         }
-        this.notifyObservers(Events.Event.UPDATESCREEN);
+        Model.notifyObservers(Events.Event.UPDATESCREEN);
     }
 
     public Set<Vehicle> getVehiclesSet() {

@@ -33,13 +33,13 @@ public class Controller {
     private JButton startButton = new JButton("Start all cars");
     private JButton stopButton = new JButton("Stop all cars");
 
-    private int gasAmount;
+    private static int gasAmount;
 
     private SpinnerModel spinnerModel = new SpinnerNumberModel(0, 0, 100, 1);
     private JSpinner gasSpinner;
 
     public int getSpeedChange() {
-        return this.gasAmount;
+        return Controller.gasAmount;
     } 
 
     public Controller() {
@@ -54,8 +54,6 @@ public class Controller {
         gasButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println(" ");    
-                System.out.println("Notified gas");
                 notifyObservers(Events.Event.GASEVENT);
             }
         });
@@ -142,7 +140,8 @@ public class Controller {
         gasSpinner = new JSpinner(spinnerModel);
         gasSpinner.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
-                gasAmount = (int)((JSpinner)e.getSource()).getValue();
+                Controller.gasAmount = (int)((JSpinner)e.getSource()).getValue();
+                
             }
         });
         gasPanel.add(gasLabel, BorderLayout.PAGE_START);

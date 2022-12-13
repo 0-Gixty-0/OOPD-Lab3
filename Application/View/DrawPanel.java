@@ -59,9 +59,6 @@ public class DrawPanel extends JPanel{
         super.paintComponent(g);
         for (Vehicle v: this.model.getVehiclesSet()) {
             VehicleType type = v.getType();
-            System.out.println(" ");
-            System.out.println(v.getXCord());
-            System.out.println(v.getYCord());
             switch (type) {
                 case SAAB:
                     g.drawImage(saabImage, (int) v.getXCord(), (int) v.getYCord(), null); // see javadoc for more info on the parameters
@@ -77,7 +74,6 @@ public class DrawPanel extends JPanel{
     
             }
         }
-        System.out.println("Painted?");
 
     }
 }

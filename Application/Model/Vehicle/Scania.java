@@ -10,7 +10,7 @@ public class Scania extends TruckWithRamp{
     }
 
     public Scania() {
-        super(2, 125.0, Color.BLUE, "Scania", VehicleType.SCANIA);
+        super(2, 80.0, Color.BLUE, "Scania", VehicleType.SCANIA);
         this.positionVehicle(0, 200);
     }
 
